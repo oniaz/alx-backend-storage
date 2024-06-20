@@ -10,7 +10,7 @@ def count_requests(method: Callable) -> Callable:
     """Decorator that increments a temporary counter in Redis, keeping track of
     how many times each URL is requested. The counter lasts for 10 seconds"""
     @functools.wraps(method)
-    def wrapper(url: str) -> Callable:
+    def wrapper(url: str) -> str:
         """Wrapper function that replaces the original method and counts the
         number of times the URL passed as argument has been requested"""
         if url:

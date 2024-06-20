@@ -13,10 +13,18 @@ content = get_page(url)
 # print(content)
 
 count = r.get(f"count:{url}")
-print(int(count))
+print(count.decode()) if count else print('None')
+print(type(count))
+
+content = get_page(url)
+count = r.get(f"count:{url}")
+print(count.decode()) if count else print('None')
+print(type(count))
 
 time.sleep(10)
 
 count = r.get(f"count:{url}")
-print(count)
+print(count.decode()) if count else print('None')
+print(type(count))
+
 # r.set(f"count:{url}", 0)
