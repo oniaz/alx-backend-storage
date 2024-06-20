@@ -19,13 +19,16 @@ if __name__ == "__main__":
     pipeline = [
         {"$group": {
             "_id": "$ip",
-            "count": {"$sum": 1}
+            "count": {"$sum": 1}  # Count occurrences of each IP
+        }},
+        {"$project": {
+            "_id": 0,
+            "ip": "$_id",
+            "count": 1
         }},
         {"$sort": {"count": -1}}
     ]
-
-    ip_counts_sorted = list(collection.aggregate(pipeline))
-    sorted_ips = [ip_count['_id'] for ip_count in ip_counts_sorted]
+    ip_counts = list(collection.aggregate(pipeline))
 
     print(f"{number_of_docs} logs")
     print("Methods:")
@@ -33,5 +36,5 @@ if __name__ == "__main__":
         print(f"\tmethod {methods[i]}: {methods_count[i]}")
     print(f"{status_check} status check")
     print("IPs:")
-    for ip in sorted_ips[:10]:
-        print('\t' + ip)
+    for ip_count in ip_counts[:10]:
+        print(f"\t{ip_count['ip']}: {ip_count['count']}")
