@@ -8,6 +8,7 @@ from typing import Callable
 
 r = redis.Redis()
 
+
 def count_requests(method: Callable) -> Callable:
     """Decorator that increments a temporary counter in Redis, keeping track of
     how many times each URL is requested. The counter lasts for 10 seconds"""
