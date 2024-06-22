@@ -21,10 +21,14 @@ count = r.get(f"count:{url}")
 print(count.decode()) if count else print('None')
 print(type(count))
 
+ttl = r.ttl(f"count:{url}")
+print(ttl)
 time.sleep(10)
 
 count = r.get(f"count:{url}")
 print(count.decode()) if count else print('None')
 print(type(count))
+ttl = r.ttl(f"count:{url}")
+print(ttl)
 
 # r.set(f"count:{url}", 0)
